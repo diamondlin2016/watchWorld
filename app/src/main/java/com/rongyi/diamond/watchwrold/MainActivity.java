@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rongyi.diamond.baselibrary.app.AppSpContact;
-import com.rongyi.diamond.baselibrary.base.BaseActivity;
-import com.rongyi.diamond.baselibrary.utils.ToastHelper;
+import com.rongyi.diamond.baselibiary.app.AppSpContact;
+import com.rongyi.diamond.baselibiary.base.BaseActivity;
+import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 
 import java.io.File;
 
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onInitView() {
         setSupportActionBar(mToolbar);
         setNavigationView();
-        initTheme();
+//        initTheme();
     }
 
     private void setNavigationView() {

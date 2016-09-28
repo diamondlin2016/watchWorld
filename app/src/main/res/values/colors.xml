@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--night-->
+    <color name="colorNightPrimary">#040404</color>
+    <color name="colorNightPrimaryDark">#000000</color>
 </resources>
