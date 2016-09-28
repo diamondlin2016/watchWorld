@@ -16,6 +16,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">true</item>
+        <item name="clockBackground">@android:color/white</item>
+        <item name="clockTextColor">@android:color/black</item>
     </style>
 
     <!--夜间模式主题-->
@@ -25,7 +27,22 @@
         <item name="colorPrimaryDark">@color/colorNightPrimaryDark</item>
         <item name="colorAccent">@android:color/darker_gray</item>
         <item name="android:windowBackground">@android:color/background_dark</item>
-        <!--<item name="navTextColor">@android:color/darker_gray</item>-->
-        <!--<item name="textColorValue">@android:color/darker_gray</item>-->
+        <item name="clockBackground">@color/color3F3F3F</item>
+        <item name="clockTextColor">@color/color8A9599</item>
     </style>
+
+    <style name="ThemeParent">
+        <item name="android:background">?attr/clockBackground</item>
+        <item name="android:textColor">?attr/clockTextColor</item>
+    </style>
+
+    <style name="MatchParent" parent="ThemeParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="TextStyleNormal" parent="ThemeParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

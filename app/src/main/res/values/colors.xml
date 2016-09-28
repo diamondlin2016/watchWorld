@@ -6,4 +6,6 @@
     <!--night-->
     <color name="colorNightPrimary">#040404</color>
     <color name="colorNightPrimaryDark">#000000</color>
+    <color name="color3F3F3F">#3F3F3F</color>
+    <color name="color8A9599">#8A9599</color>
 </resources>
