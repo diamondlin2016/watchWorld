@@ -1,4 +1,4 @@
-package com.rongyi.diamond.watchwrold;
+package com.rongyi.diamond.watchwrold.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -25,11 +24,11 @@ import android.widget.TextView;
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
+import com.rongyi.diamond.watchwrold.R;
 
 import java.io.File;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Author:    Diamond_Lin
@@ -100,8 +99,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 isNight = !isNight;
                 mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, isNight);
                 changeThemeByZhiHu();
-//                finish();
-//                startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.nav_setting:
                 ToastHelper.showToastMessage("点击了设置按钮");
@@ -125,6 +122,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
+    /*
+    * 借鉴了知乎的实现套路
+    * */
     private void changeThemeByZhiHu() {
         showAnimation();
         toggleThemeSetting();
@@ -212,10 +212,4 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

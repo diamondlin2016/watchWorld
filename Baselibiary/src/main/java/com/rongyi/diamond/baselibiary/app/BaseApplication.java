@@ -19,11 +19,15 @@ import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
  */
 public class BaseApplication extends Application {
     private static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
         SharedPreferencesHelper.getInstance().Builder(this);
+//presenter必须在这里注册
+//        LogicProxy.getInstance().init(IPresenter.class,IPresenter2.class);
+
     }
 
 

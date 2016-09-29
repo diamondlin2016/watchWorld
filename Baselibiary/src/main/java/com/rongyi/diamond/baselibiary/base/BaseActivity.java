@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.rongyi.diamond.baselibiary.base.mvp.BaseView;
+import com.rongyi.diamond.baselibiary.base.mvp.LogicProxy;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.widget.LoadingView;
 
@@ -44,6 +46,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void hideLoadView() {
         mLoadingView.hide();
+    }
+
+    public <T> T getLogicImpl(Class cls, BaseView o) {
+        return LogicProxy.getInstance().bind(cls, o);
     }
 
     @Override

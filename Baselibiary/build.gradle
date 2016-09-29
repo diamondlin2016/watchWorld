@@ -28,4 +28,18 @@ dependencies {
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
     //Logger输出显示 代码地址-----> https://github.com/orhanobut/logger
     compile 'com.github.orhanobut:logger:1.12'
+
+    //EventBus 代码地址-----> https://github.com/greenrobot/EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //API网络请求注解库    代码地址-----> https://github.com/square/retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+    //异步处理库    代码地址-----> https://github.com/ReactiveX/RxAndroid
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'io.reactivex:rxandroid:1.2.0'
+    //网络请求库 代码地址-----> https://github.com/square/okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    //EventBus 代码地址-----> https://github.com/greenrobot/EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
