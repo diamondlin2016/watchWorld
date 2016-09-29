@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
 import com.rongyi.diamond.baselibiary.base.mvp.BaseView;
 import com.rongyi.diamond.baselibiary.base.mvp.LogicProxy;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     public LoadingView mLoadingView;
     public SharedPreferencesHelper mSharedPreferencesHelper;
+    protected BasePresenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

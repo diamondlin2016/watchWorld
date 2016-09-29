@@ -1,1 +1,1 @@
-include ':app', ':Baselibiary'
+include ':app', ':Baselibiary', ':Networklibrary'
