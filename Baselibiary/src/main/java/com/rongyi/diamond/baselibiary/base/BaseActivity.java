@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
-import com.rongyi.diamond.baselibiary.base.mvp.BaseView;
+import com.rongyi.diamond.baselibiary.base.mvp.IBaseView;
 import com.rongyi.diamond.baselibiary.base.mvp.LogicProxy;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.widget.LoadingView;
@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mLoadingView.hide();
     }
 
-    public <T> T getLogicImpl(Class cls, BaseView o) {
+    public <T> T getLogicImpl(Class cls, IBaseView o) {
         return LogicProxy.getInstance().bind(cls, o);
     }
 
@@ -62,6 +62,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.unSubscribe();
+            mPresenter.detachView();
+        }
+    }
 
 }

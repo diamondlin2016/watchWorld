@@ -13,7 +13,7 @@ import rx.subscriptions.CompositeSubscription;
  * 16/9/29      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public class BasePresenter<T extends BaseView> implements IBasePresenter<T>{
+public class BasePresenter<T extends IBaseView> implements IBasePresenter<T>{
     protected CompositeSubscription mSubscriptions;
     protected final String TAG = getClass().getSimpleName();
     private T mView;

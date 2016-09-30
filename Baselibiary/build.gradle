@@ -22,13 +22,13 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:palette-v7:24.2.1'
     //注解
     compile 'com.jakewharton:butterknife:7.0.1'
     //https://github.com/ybq/Android-SpinKit  progressBar
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
     //Logger输出显示 代码地址-----> https://github.com/orhanobut/logger
     compile 'com.github.orhanobut:logger:1.12'
-
     //EventBus 代码地址-----> https://github.com/greenrobot/EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
     //API网络请求注解库    代码地址-----> https://github.com/square/retrofit
@@ -42,4 +42,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     //EventBus 代码地址-----> https://github.com/greenrobot/EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
+    //图片加载库 代码地址-----> https://github.com/square/picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

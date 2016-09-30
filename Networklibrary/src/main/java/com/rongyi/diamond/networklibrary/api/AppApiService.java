@@ -1,5 +1,12 @@
 package com.rongyi.diamond.networklibrary.api;
 
+import com.rongyi.diamond.networklibrary.bean.ImageData;
+
+import retrofit2.Callback;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import rx.Observable;
+
 /**
  * Author:    Diamond_Lin
  * Version    V1.0
@@ -13,6 +20,12 @@ package com.rongyi.diamond.networklibrary.api;
  */
 public interface AppApiService {
 
-
+    /**
+     * 获取首页图片
+     *
+     * @param size 获取图片张数
+     */
+    @GET("http://lab.zuimeia.com/wallpaper/category/1/?page_size=1")
+    Observable<HttpResultV1<ImageData>> getImage();
 
 }

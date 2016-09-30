@@ -8,6 +8,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
+import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
+import com.rongyi.diamond.networklibrary.presenter.HomeImagePresenter;
 import com.rongyi.diamond.watchwrold.R;
 
 import butterknife.Bind;
@@ -24,12 +26,13 @@ import butterknife.OnClick;
  * 16/9/29      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public class LaunchActivity extends BaseActivity implements Animation.AnimationListener {
+public class LaunchActivity extends BaseActivity implements Animation.AnimationListener,HomeImageContract.View {
 
     @Bind(R.id.tv_welcome)
     TextView mTvWelcome;
     ScaleAnimation scaleAnimation;
     private boolean mHasEnd = false;
+    private boolean mHasClick = false;
 
     @Override
     protected int getLayoutResource() {
@@ -38,6 +41,8 @@ public class LaunchActivity extends BaseActivity implements Animation.AnimationL
 
     @Override
     protected void onInitView() {
+        mPresenter = getLogicImpl(HomeImageContract.Presenter.class, this);
+        ((HomeImagePresenter)mPresenter).getImage(1);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         scaleAnimation = new ScaleAnimation(1f, 3f, 1f, 3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(3000);
@@ -58,6 +63,7 @@ public class LaunchActivity extends BaseActivity implements Animation.AnimationL
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+        mHasClick = true;
     }
 
     @Override
@@ -68,10 +74,18 @@ public class LaunchActivity extends BaseActivity implements Animation.AnimationL
     @Override
     public void onAnimationEnd(Animation animation) {
         mHasEnd = true;
+        if (mHasClick){
+            enterHome();
+        }
     }
 
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+
+    @Override
+    public int getImageSize() {
+        return 1;
     }
 }

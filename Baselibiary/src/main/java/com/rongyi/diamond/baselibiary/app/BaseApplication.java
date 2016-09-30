@@ -3,7 +3,11 @@ package com.rongyi.diamond.baselibiary.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.orhanobut.logger.AndroidLogTool;
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -23,13 +27,23 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = getApplicationContext();
         SharedPreferencesHelper.getInstance().Builder(this);
-
+        mContext = getApplicationContext();
+        setUpLog();
+        Picasso.with(mContext);
     }
-
 
     public static Context getContext() {
         return mContext;
     }
+
+    protected void setUpLog() {
+        Logger.init("容易逛")                 // default PRETTYLOGGER or use just init()
+                .methodCount(3)                 // default 2
+                .hideThreadInfo()               // default shown
+                .logLevel(LogLevel.FULL)        // default LogLevel.FULL
+                .methodOffset(2)                // default 0
+                .logTool(new AndroidLogTool()); // custom log tool, optional
+    }
+
 }

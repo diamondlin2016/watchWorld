@@ -4,8 +4,6 @@ import com.rongyi.diamond.baselibiary.annotation.Implement;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,10 +31,8 @@ public class LogicProxy {
     private Map<Class, Object> m_objects;
 
     public void init(Class... clss) {
-        List<Class> list = new LinkedList<Class>();
         for (Class cls : clss) {
             if (cls.isAnnotationPresent(Implement.class)) {
-                list.add(cls);
                 for (Annotation ann : cls.getDeclaredAnnotations()) {
                     if (ann instanceof Implement) {
                         try {
@@ -56,7 +52,7 @@ public class LogicProxy {
         return (T) m_objects.get(cls);
     }
 
-    public <T> T bind(Class cls, BaseView o) {
+    public <T> T bind(Class cls, IBaseView o) {
         Object ret = m_objects.get(cls);
 
         ((BasePresenter) ret).attachView(o);

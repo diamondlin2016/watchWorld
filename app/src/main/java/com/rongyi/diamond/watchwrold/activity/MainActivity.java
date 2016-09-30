@@ -7,7 +7,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,16 +19,17 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.rongyi.diamond.baselibiary.app.AppContact;
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
+import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 import com.rongyi.diamond.watchwrold.R;
-
-import java.io.File;
+import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
 import butterknife.Bind;
 
@@ -62,28 +65,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        initTheme();
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected void onInitView() {
         setSupportActionBar(mToolbar);
         setNavigationView();
-        initTheme();
     }
 
     private void setNavigationView() {
         View headerView = mNavView.getHeaderView(0);
         TextView tvTitle = (TextView) headerView.findViewById(R.id.tv_title);
-        LinearLayout llImage = (LinearLayout) headerView.findViewById(R.id.slid_bg);
-        if (new File(getFilesDir().getPath() + "/bg.jpg").exists()) {
-            BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), getFilesDir().getPath() + "/bg.jpg");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                llImage.setBackground(bitmapDrawable);
-            }
-            tvTitle.setText(mSharedPreferencesHelper.getString(AppSpContact.NAVIGATION_TITLE, getString(R.string.text_navigation_title)));
-        }
+        ImageView ivNav = (ImageView) headerView.findViewById(R.id.iv_nav);
+        ImageDisplayHelper.displayLocalImage(AppContact.NAVIGATION_IMAGE_PATH,R.mipmap.bg,ivNav);
+        tvTitle.setText(mSharedPreferencesHelper.getString(AppSpContact.NAVIGATION_TITLE, getString(R.string.default_description)));
         mNavView.setNavigationItemSelectedListener(this);
         initMenu();
     }
 
     private void initMenu() {
+        //add Item Click
     }
 
     @Override
@@ -98,7 +102,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 ToastHelper.showToastMessage(!isNight ? "开启了夜间模式" : "关闭了夜间模式");
                 isNight = !isNight;
                 mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, isNight);
-                changeThemeByZhiHu();
+                changeTheme();
                 break;
             case R.id.nav_setting:
                 ToastHelper.showToastMessage("点击了设置按钮");
@@ -115,17 +119,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     //夜间模式相关
     private void initTheme() {
-        if (mSharedPreferencesHelper.getBoolean(AppSpContact.IS_NIGHT, false)) {
+        if (SharedPreferencesHelper.getInstance().getBoolean(AppSpContact.IS_NIGHT, false)) {
             setTheme(R.style.AppTheme);
         } else {
             setTheme(R.style.NightTheme);
         }
     }
 
-    /*
-    * 借鉴了知乎的实现套路
-    * */
-    private void changeThemeByZhiHu() {
+    private void changeTheme() {
         showAnimation();
         toggleThemeSetting();
         refreshUI();
@@ -183,8 +184,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     /**
      * 获取一个 View 的缓存视图
      *
-     * @param view
-     * @return
      */
     private Bitmap getCacheBitmapFromView(View view) {
         final boolean drawingCacheEnabled = true;
