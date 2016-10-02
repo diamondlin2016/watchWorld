@@ -30,15 +30,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
         ButterKnife.bind(this);
-
         mSharedPreferencesHelper = SharedPreferencesHelper.getInstance();
-
-        onInitView();
     }
 
     protected abstract int getLayoutResource();
-
-    protected abstract void onInitView();
 
     public void showLoadView() {
         if (mLoadingView == null)
@@ -50,6 +45,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         mLoadingView.hide();
     }
 
+    protected void setViewComponent(){
+
+    }
 
     @Override
     public void onBackPressed() {

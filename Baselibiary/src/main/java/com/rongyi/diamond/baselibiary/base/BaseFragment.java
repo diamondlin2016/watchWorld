@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
 import com.rongyi.diamond.baselibiary.widget.LoadingView;
 
 import butterknife.ButterKnife;
@@ -26,7 +25,6 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
     protected View rootView;
     private LoadingView mLoginView;
-    protected BasePresenter mPresenter;
 
     @Nullable
     @Override
@@ -35,7 +33,6 @@ public abstract class BaseFragment extends Fragment {
             rootView = inflater.inflate(getLayoutResource(), container, false);
         ButterKnife.bind(this, rootView);
         mLoginView = new LoadingView(getActivity());
-        onInitView();
         return rootView;
     }
 

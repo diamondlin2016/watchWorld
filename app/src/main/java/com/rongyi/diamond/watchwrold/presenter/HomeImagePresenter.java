@@ -1,18 +1,18 @@
-package com.rongyi.diamond.networklibrary.presenter;
+package com.rongyi.diamond.watchwrold.presenter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 
-import com.rongyi.diamond.baselibiary.app.AppContact;
+import com.rongyi.diamond.watchwrold.app.AppContact;
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.app.BaseApplication;
 import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
-import com.rongyi.diamond.networklibrary.NetworkApplication;
 import com.rongyi.diamond.networklibrary.R;
+import com.rongyi.diamond.networklibrary.app.NetworkApplication;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
 import com.rongyi.diamond.networklibrary.model.HomeImageModel;
 import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
@@ -44,7 +44,12 @@ import rx.schedulers.Schedulers;
  * Why & What is modified:
  */
 public class HomeImagePresenter extends BasePresenter implements HomeImageContract.Presenter {
+    private final HomeImageContract.View mView;
     HomeImageModel mHomeImageModel;
+
+    public HomeImagePresenter(HomeImageContract.View view) {
+        mView = view;
+    }
 
     @Override
     public void getImage(int size) {
@@ -68,7 +73,7 @@ public class HomeImagePresenter extends BasePresenter implements HomeImageContra
                 saveImage(imageData);
             }
         };
-        mHomeImageModel.getImage(subscriber, 1);
+        mHomeImageModel.getImage(subscriber, mView.getImageSize());
         mSubscriptions.add(subscriber);
     }
 
@@ -83,7 +88,9 @@ public class HomeImagePresenter extends BasePresenter implements HomeImageContra
                         if (imageData.getImages() != null) {
                             {
                                 try {
-                                    Bitmap bitmap = BitmapFactory.decodeStream(new URL("http://wpstatic.zuimeia.com/" + imageData.getImages().get(0).getImageUrl() + "?imageMogr/v2/auto-orient/thumbnail/480x320/quality/100").openConnection().getInputStream());
+                                    Bitmap bitmap = BitmapFactory.decodeStream(
+                                            new URL(AppContact.IMAGE_URL_HEAD.concat(imageData.getImages().get(0).getImageUrl()).concat("?imageMogr/v2/auto-orient/thumbnail/480x320/quality/100")).
+                                                    openConnection().getInputStream());
                                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(new File(AppContact.NAVIGATION_IMAGE_PATH)));
                                     Palette palette = Palette.from(bitmap).generate();
                                     int color = 0x000000;

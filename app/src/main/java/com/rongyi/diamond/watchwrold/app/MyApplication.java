@@ -2,7 +2,6 @@ package com.rongyi.diamond.watchwrold.app;
 
 
 import com.rongyi.diamond.networklibrary.app.NetworkApplication;
-import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
 
 /**
  * Author:    Diamond_Lin
@@ -21,16 +20,8 @@ public class MyApplication extends NetworkApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        initPresenter();
         mContext = getApplicationContext();
     }
-
-    private void initPresenter() {
-        //presenter必须在这里注册
-        LogicProxy.getInstance().init(HomeImageContract.Presenter.class);
-    }
-
-
 
     public static MyApplication getContext() {
         return (MyApplication)mContext;

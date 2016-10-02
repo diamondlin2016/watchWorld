@@ -1,11 +1,9 @@
 package com.rongyi.diamond.networklibrary.mvp;
 
-import com.rongyi.diamond.baselibiary.annotation.Implement;
 import com.rongyi.diamond.baselibiary.base.mvp.IBaseModel;
 import com.rongyi.diamond.baselibiary.base.mvp.IBasePresenter;
 import com.rongyi.diamond.baselibiary.base.mvp.IBaseView;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
-import com.rongyi.diamond.networklibrary.presenter.HomeImagePresenter;
 
 import rx.Subscriber;
 
@@ -13,7 +11,7 @@ import rx.Subscriber;
  * Author:    Diamond_Lin
  * Version    V1.0
  * Date:      16/9/30 上午11:34
- * Description:
+ * Description:  首页图片获取 contract
  * Modification  History:
  * Date         	Author        		Version        	Description
  * -----------------------------------------------------------------------------------
@@ -25,7 +23,6 @@ public interface HomeImageContract {
         int getImageSize();
      }
 
-    @Implement(HomeImagePresenter.class)
     interface Presenter extends IBasePresenter {
         void getImage(int size);
     }

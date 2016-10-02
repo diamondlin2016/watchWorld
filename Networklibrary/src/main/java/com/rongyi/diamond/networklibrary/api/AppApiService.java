@@ -3,7 +3,7 @@ package com.rongyi.diamond.networklibrary.api;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
 
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -24,7 +24,7 @@ public interface AppApiService {
      *
      * @param size 获取图片张数
      */
-    @GET("http://lab.zuimeia.com/wallpaper/category/1/?page_size={size}")
-    Observable<HttpResultV1<ImageData>> getImage(@Path("token") int size);
+    @GET("http://lab.zuimeia.com/wallpaper/category/1/")
+    Observable<HttpResultV1<ImageData>> getImage(@Query("page_size") int size);
 
 }

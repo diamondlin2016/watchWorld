@@ -1,16 +1,18 @@
 package com.rongyi.diamond.watchwrold.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 import com.rongyi.diamond.baselibiary.base.BasePresenterActivity;
-import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
 import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
 import com.rongyi.diamond.watchwrold.R;
+import com.rongyi.diamond.watchwrold.presenter.HomeImagePresenter;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -26,7 +28,7 @@ import butterknife.OnClick;
  * 16/9/29      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public class LaunchActivity extends BasePresenterActivity implements Animation.AnimationListener,HomeImageContract.View {
+public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> implements Animation.AnimationListener,HomeImageContract.View {
 
     @Bind(R.id.tv_welcome)
     TextView mTvWelcome;
@@ -35,13 +37,13 @@ public class LaunchActivity extends BasePresenterActivity implements Animation.A
     private boolean mHasClick = false;
 
     @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_launch;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setViewComponent();
     }
 
-    @Override
-    protected void onInitView() {
-        ((HomeImagePresenter)mPresenter).getImage(1);
+    protected void setViewComponent() {
+        mPresenter.getImage(1);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         scaleAnimation = new ScaleAnimation(1f, 3f, 1f, 3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(3000);
@@ -57,7 +59,13 @@ public class LaunchActivity extends BasePresenterActivity implements Animation.A
     }
 
     @Override
-    public BasePresenter createPresenter() {
+    protected int getLayoutResource() {
+        return R.layout.activity_launch;
+    }
+
+
+    @Override
+    public HomeImagePresenter createPresenter() {
         return new HomeImagePresenter(this);
     }
 

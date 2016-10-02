@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rongyi.diamond.baselibiary.app.AppContact;
+import com.rongyi.diamond.watchwrold.app.AppContact;
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
@@ -68,13 +68,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onInitView() {
         setSupportActionBar(mToolbar);
         setNavigationView();
     }
+
 
     private void setNavigationView() {
         View headerView = mNavView.getHeaderView(0);
