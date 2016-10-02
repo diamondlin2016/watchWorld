@@ -97,7 +97,7 @@ public class HttpApiMethods {
      * @param size 获取图片张数
      */
     public void getImage(Subscriber<ImageData> subscriber, int size) {
-        toSubscribe(appApiService.getImage()
+        toSubscribe(appApiService.getImage(size)
                         .compose(new RedirectResponseV1Transformer<ImageData>()),
                 subscriber);
     }

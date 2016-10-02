@@ -11,12 +11,8 @@ package com.rongyi.diamond.baselibiary.base.mvp;
  * 16/9/29      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public interface IBasePresenter<V> {
+public interface IBasePresenter {
     void subscribe();
 
     void unSubscribe();
-
-    void attachView(V mvpView);
-
-    void detachView();
 }

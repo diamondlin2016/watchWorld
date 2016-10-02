@@ -1,4 +1,4 @@
-package com.rongyi.diamond.networklibrary;
+package com.rongyi.diamond.networklibrary.app;
 
 import com.rongyi.diamond.baselibiary.app.BaseApplication;
 import com.rongyi.diamond.baselibiary.utils.LogUtils;
@@ -8,6 +8,7 @@ import com.rongyi.diamond.networklibrary.api.HttpApiMethods;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -87,15 +88,16 @@ public class NetworkApplication extends BaseApplication {
                 .addNetworkInterceptor(cacheInterceptor)
                 .addInterceptor(cacheInterceptor)
                 .addInterceptor(requestInterceptor)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .cache(cache)
                 .build();
+
         AppApiService service = new Retrofit.Builder()
-                .baseUrl("http://news-at.zhihu.com")
+                .baseUrl("http://http://www.google.com/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(AppApiService.class);
-
         return HttpApiMethods.with(service);
     }
 

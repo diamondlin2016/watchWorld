@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
-import com.rongyi.diamond.baselibiary.base.mvp.BaseView;
-import com.rongyi.diamond.baselibiary.base.mvp.LogicProxy;
 import com.rongyi.diamond.baselibiary.widget.LoadingView;
 
 import butterknife.ButterKnife;
@@ -53,17 +51,11 @@ public abstract class BaseFragment extends Fragment {
         mLoginView.hide();
     }
 
-    //获得该页面的实例
-    public <T> T getLogicImpl(Class cls, BaseView o) {
-        return LogicProxy.getInstance().bind(cls, o);
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-        if (mPresenter != null)
-            mPresenter.detachView();
     }
 
 }

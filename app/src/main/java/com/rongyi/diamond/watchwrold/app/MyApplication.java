@@ -1,8 +1,7 @@
 package com.rongyi.diamond.watchwrold.app;
 
 
-import com.rongyi.diamond.baselibiary.base.mvp.LogicProxy;
-import com.rongyi.diamond.networklibrary.NetworkApplication;
+import com.rongyi.diamond.networklibrary.app.NetworkApplication;
 import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
 
 /**

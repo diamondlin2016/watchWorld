@@ -7,7 +7,7 @@ import com.rongyi.diamond.networklibrary.bean.base.BaseBean;
  * Author:    Diamond_Lin
  * Version    V1.0
  * Date:      16/9/30 下午2:40
- * Description:
+ * Description:{@link ImageData}
  * Modification  History:
  * Date         	Author        		Version        	Description
  * -----------------------------------------------------------------------------------
