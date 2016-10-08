@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
+
 /**
  * Author:    Diamond_Lin
  * Version    V1.0
@@ -15,7 +17,7 @@ import android.view.View;
  * 16/10/8      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public abstract class BaseViewPagerFragment extends BasePresenterFragment {
+public abstract class BaseViewPagerFragment<T extends BasePresenter> extends BasePresenterFragment {
     protected boolean isPrepared = false;//页面是否已初始化
     protected boolean isVisible = false;//页面是否显示
     protected boolean isInitFinish = false;//数据是否已初始化

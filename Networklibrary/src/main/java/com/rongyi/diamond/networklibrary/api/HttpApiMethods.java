@@ -3,6 +3,7 @@ package com.rongyi.diamond.networklibrary.api;
 import com.rongyi.diamond.baselibiary.app.BaseApplication;
 import com.rongyi.diamond.baselibiary.utils.NetworkInfoHelper;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
+import com.rongyi.diamond.networklibrary.bean.NewsList;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -93,7 +94,7 @@ public class HttpApiMethods {
 
     /**
      * 获取首页图片
-     *
+     *  RedirectResponseV1Transformer 适合接口统一的 api 使用
      * @param size 获取图片张数
      */
     public void getImage(Subscriber<ImageData> subscriber, int size) {
@@ -102,6 +103,15 @@ public class HttpApiMethods {
                 subscriber);
     }
 
+
+    /**
+     * 获取网易头条数据
+     *
+     * @param size 获取图片张数
+     */
+    public void getNews(Subscriber<NewsList> subscriber, int size) {
+        toSubscribe(appApiService.getNews(size), subscriber);
+    }
 
 
 
