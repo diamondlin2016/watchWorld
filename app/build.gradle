@@ -24,6 +24,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
+    //加强版RecyclerView 代码地址-----> https://github.com/Malinskiy/SuperRecyclerView
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
+
     compile project(':Baselibiary')
     compile project(':Networklibrary')
+
 }

@@ -15,7 +15,6 @@ public class AppSpContact {
 
     public static final String NAVIGATION_TITLE = "navigation_title";//测滑栏目title
     public static final String IS_NIGHT = "is_night";// 夜间模式
-    public static final String IMAGE_DESCRIPTION = "image_description";
     public static final String VIBRANT = "vibrant";
     public static final String MUTED = "muted";
     public static final String IMAGE_GET_TIME = "image_get_time";

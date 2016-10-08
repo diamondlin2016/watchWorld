@@ -44,4 +44,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     //图片加载库 代码地址-----> https://github.com/square/picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
 }

@@ -3,6 +3,7 @@ package com.rongyi.diamond.watchwrold.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,7 +15,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,12 +26,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rongyi.diamond.watchwrold.app.AppContact;
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
+import com.rongyi.diamond.baselibiary.base.BaseFragment;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 import com.rongyi.diamond.watchwrold.R;
+import com.rongyi.diamond.watchwrold.app.AppContact;
+import com.rongyi.diamond.watchwrold.fragment.NewTopsFragment;
 import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
 import butterknife.Bind;
@@ -56,8 +61,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     DrawerLayout mDrawerLayout;
     @Bind(R.id.rl)
     RelativeLayout mRl;
-    @Bind(R.id.tv_hello)
-    TextView mTvHello;
 
     @Override
     protected int getLayoutResource() {
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setSupportActionBar(mToolbar);
         setNavigationView();
+
     }
 
 
@@ -77,7 +81,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         View headerView = mNavView.getHeaderView(0);
         TextView tvTitle = (TextView) headerView.findViewById(R.id.tv_title);
         ImageView ivNav = (ImageView) headerView.findViewById(R.id.iv_nav);
-        ImageDisplayHelper.displayLocalImage(AppContact.NAVIGATION_IMAGE_PATH,R.mipmap.bg,ivNav);
+        ImageDisplayHelper.displayLocalImage(AppContact.NAVIGATION_IMAGE_PATH, R.mipmap.bg, ivNav);
         tvTitle.setText(mSharedPreferencesHelper.getString(AppSpContact.NAVIGATION_TITLE, getString(R.string.default_description)));
         mNavView.setNavigationItemSelectedListener(this);
         initMenu();
@@ -85,19 +89,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initMenu() {
         //add Item Click
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id < 4) {
-            ToastHelper.showToastMessage(String.valueOf(id));
-        }
         switch (id) {
             case R.id.nav_night:
                 boolean isNight = mSharedPreferencesHelper.getBoolean(AppSpContact.IS_NIGHT, false);
                 ToastHelper.showToastMessage(!isNight ? "开启了夜间模式" : "关闭了夜间模式");
                 isNight = !isNight;
+                Log.e("_______",""+isNight);
                 mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, isNight);
                 changeTheme();
                 break;
@@ -107,6 +110,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_change:
                 ToastHelper.showToastMessage("点击了改变栏目按钮");
                 break;
+            default:
+                switchFragment(id);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
@@ -114,12 +119,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
+    private void switchFragment(int id) {
+        BaseFragment fragment;
+        String title;
+        switch (id){
+            case R.id.new_tops:
+                fragment = new NewTopsFragment();
+                title = getString(R.string.title_new_tops);
+                break;
+            default:
+                fragment = new NewTopsFragment();
+                title = getString(R.string.title_new_tops);
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, fragment).commit();
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(title);
+    }
+
     //夜间模式相关
     private void initTheme() {
         if (SharedPreferencesHelper.getInstance().getBoolean(AppSpContact.IS_NIGHT, false)) {
-            setTheme(R.style.AppTheme);
-        } else {
+            Log.e("_______","开启夜间模式");
             setTheme(R.style.NightTheme);
+        } else {
+            Log.e("_______","开启日间模式");
+            setTheme(R.style.AppTheme);
         }
     }
 
@@ -139,20 +165,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavView.setBackgroundResource(background.resourceId);
         mRl.setBackgroundResource(background.resourceId);
         Resources resources = getResources();
-        mTvHello.setTextColor(resources.getColor(textColor.resourceId));
+//        mTvHello.setTextColor(resources.getColor(textColor.resourceId));
         refreshStatusBar();
     }
 
     /**
      * 刷新 StatusBar
      */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void refreshStatusBar() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            TypedValue typedValue = new TypedValue();
-            Resources.Theme theme = getTheme();
-            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-            getWindow().setStatusBarColor(getResources().getColor(typedValue.resourceId));
-        }
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        getWindow().setStatusBarColor(getResources().getColor(typedValue.resourceId));
     }
 
 
@@ -180,7 +205,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     /**
      * 获取一个 View 的缓存视图
-     *
      */
     private Bitmap getCacheBitmapFromView(View view) {
         final boolean drawingCacheEnabled = true;

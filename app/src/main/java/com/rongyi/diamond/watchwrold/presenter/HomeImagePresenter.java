@@ -108,7 +108,7 @@ public class HomeImagePresenter extends BasePresenter implements HomeImageContra
                                         muted = ContextCompat.getColor(BaseApplication.getContext(), R.color.colorAccent);
                                     DateFormat dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.DATE_FIELD);
                                     SharedPreferencesHelper sharedPreferencesHelper = SharedPreferencesHelper.getInstance();
-                                    sharedPreferencesHelper.putString(AppSpContact.IMAGE_DESCRIPTION, imageData.getImages().get(0).getDescription());
+                                    sharedPreferencesHelper.putString(AppSpContact.NAVIGATION_TITLE, imageData.getImages().get(0).getDescription());
                                     sharedPreferencesHelper.putInt(AppSpContact.VIBRANT, vibrant);
                                     sharedPreferencesHelper.putInt(AppSpContact.MUTED, muted);
                                     sharedPreferencesHelper.putString(AppSpContact.IMAGE_GET_TIME, dateFormat.format(new Date()));
