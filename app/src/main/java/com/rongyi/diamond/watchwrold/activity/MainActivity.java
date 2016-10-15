@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,12 +22,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
-import com.rongyi.diamond.baselibiary.base.BaseFragment;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 import com.rongyi.diamond.watchwrold.R;
@@ -53,14 +50,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.fab)
-    FloatingActionButton mFab;
     @Bind(R.id.nav_view)
     NavigationView mNavView;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.rl)
-    RelativeLayout mRl;
 
     @Override
     protected int getLayoutResource() {
@@ -73,9 +66,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setSupportActionBar(mToolbar);
         setNavigationView();
-
+        setDefaultItem();
     }
 
+    private void setDefaultItem() {
+        int i = mSharedPreferencesHelper.getInt(AppSpContact.CHOOSE_ITEM_ID);
+        if (i!=0){
+            mNavView.setCheckedItem(i);
+            switchFragment(i);
+        }
+    }
 
     private void setNavigationView() {
         View headerView = mNavView.getHeaderView(0);
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 boolean isNight = mSharedPreferencesHelper.getBoolean(AppSpContact.IS_NIGHT, false);
                 ToastHelper.showToastMessage(!isNight ? "开启了夜间模式" : "关闭了夜间模式");
                 isNight = !isNight;
-                Log.e("_______",""+isNight);
+                Log.e("_______", "" + isNight);
                 mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, isNight);
                 changeTheme();
                 break;
@@ -120,31 +120,28 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void switchFragment(int id) {
-        BaseFragment fragment;
         String title;
-        switch (id){
+        switch (id) {
             case R.id.new_tops:
-                fragment = new NewTopsFragment();
-                title = getString(R.string.title_new_tops);
-                break;
             default:
-                fragment = new NewTopsFragment();
+                NewTopsFragment newTopsFragment = new NewTopsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, newTopsFragment).commit();
                 title = getString(R.string.title_new_tops);
         }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, fragment).commit();
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(title);
+        mSharedPreferencesHelper.putInt(AppSpContact.CHOOSE_ITEM_ID,id);
     }
 
     //夜间模式相关
     private void initTheme() {
         if (SharedPreferencesHelper.getInstance().getBoolean(AppSpContact.IS_NIGHT, false)) {
-            Log.e("_______","开启夜间模式");
+            Log.e("_______", "开启夜间模式");
             setTheme(R.style.NightTheme);
         } else {
-            Log.e("_______","开启日间模式");
+            Log.e("_______", "开启日间模式");
             setTheme(R.style.AppTheme);
         }
     }
@@ -161,9 +158,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Resources.Theme theme = getTheme();
         theme.resolveAttribute(R.attr.clockBackground, background, true);
         theme.resolveAttribute(R.attr.clockTextColor, textColor, true);
-        mFab.setBackgroundResource(background.resourceId);
         mNavView.setBackgroundResource(background.resourceId);
-        mRl.setBackgroundResource(background.resourceId);
         Resources resources = getResources();
 //        mTvHello.setTextColor(resources.getColor(textColor.resourceId));
         refreshStatusBar();

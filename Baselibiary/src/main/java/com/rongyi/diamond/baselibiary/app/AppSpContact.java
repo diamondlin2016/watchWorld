@@ -20,4 +20,5 @@ public class AppSpContact {
     public static final String IMAGE_GET_TIME = "image_get_time";
 
 
+    public static final String CHOOSE_ITEM_ID = "choose_item_id";//选择条目
 }

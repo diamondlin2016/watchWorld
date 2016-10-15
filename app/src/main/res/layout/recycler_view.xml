@@ -5,4 +5,5 @@
     android:id="@+id/recycle_view"
     style="@style/MatchParent"
     app:recyclerClipToPadding="false"
+    app:layout_empty="@layout/include_empty_view"
     app:scrollbarStyle="outsideOverlay"/>

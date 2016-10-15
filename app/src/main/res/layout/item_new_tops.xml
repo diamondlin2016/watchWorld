@@ -9,27 +9,12 @@
               android:paddingTop="@dimen/item_margin"
               android:stateListAnimator="@animator/raise">
 
-    <!--<com.looklook.xinghongfei.looklook.widget.BadgedFourThreeImageView-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/item_image_id"-->
-        <!--android:layout_width="@dimen/image_width"-->
-        <!--android:layout_height="@dimen/image_hight"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:layout_marginLeft="@dimen/image_left_margin"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:padding="@dimen/item_padding"-->
-        <!--android:elevation="@dimen/z_card"-->
-        <!--android:foreground="@drawable/mid_grey_ripple"-->
-        <!--android:stateListAnimator="@animator/raise"-->
-        <!--app:badgeGravity="end|bottom"-->
-        <!--app:badgePadding="@dimen/padding_normal"/>-->
 
     <ImageView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/item_image_id"
         android:layout_width="93dp"
-        android:layout_height="24dp"
+        android:layout_height="74dp"
         android:layout_marginBottom="@dimen/mini_margin"
         android:layout_marginLeft="@dimen/large_margin"
         android:layout_marginTop="@dimen/mini_margin"

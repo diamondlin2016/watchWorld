@@ -12,6 +12,7 @@ import com.rongyi.diamond.baselibiary.adapter.BaseAbstractAdapter;
 import com.rongyi.diamond.baselibiary.adapter.BaseViewHolder;
 import com.rongyi.diamond.networklibrary.bean.NewsBean;
 import com.rongyi.diamond.watchwrold.R;
+import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
 import butterknife.Bind;
 
@@ -56,7 +57,9 @@ public class NewTopsAdapter extends BaseAbstractAdapter<NewsBean> {
 
         @Override
         public void bindViewData(NewsBean data) {
-
+            mItemTextId.setText(data.getTitle());
+            mItemTextSourceId.setText(data.getSource());
+            ImageDisplayHelper.displayImage(data.getImgsrc(), R.drawable.ic_menu_slideshow, mItemImageId);
         }
     }
 }

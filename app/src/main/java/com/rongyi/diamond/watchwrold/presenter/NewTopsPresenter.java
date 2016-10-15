@@ -1,7 +1,6 @@
 package com.rongyi.diamond.watchwrold.presenter;
 
 import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
-import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 import com.rongyi.diamond.networklibrary.app.NetworkApplication;
 import com.rongyi.diamond.networklibrary.bean.NewsList;
 import com.rongyi.diamond.networklibrary.model.NewTopsModel;
@@ -25,14 +24,13 @@ public class NewTopsPresenter extends BasePresenter implements NewTopsContract.P
     private final NewTopsContract.View mView;
     private NewTopsModel mNewTopsModel;
     private int mCurrentPage = 0;
-    private int[] index = new int[]{0, 2, 5, 8};
+    private int[] index = new int[]{0, 3, 5, 8};
 
     public NewTopsPresenter(NewTopsContract.View view) {
         mView = view;
     }
 
-    @Override
-    public void getNewTops(int index) {
+    private void getNewTops(int index) {
         if (mNewTopsModel == null) {
             mNewTopsModel = new NewTopsModel(NetworkApplication.getContext().getHttpApiMethods());
         }
@@ -40,17 +38,21 @@ public class NewTopsPresenter extends BasePresenter implements NewTopsContract.P
         Subscriber<NewsList> subscriber = new Subscriber<NewsList>() {
             @Override
             public void onCompleted() {
-
+                mCurrentPage++;
             }
 
             @Override
             public void onError(Throwable e) {
-                ToastHelper.showToastMessage(e.getMessage());
+                mView.onLoadError();
             }
 
             @Override
             public void onNext(NewsList imageData) {
-
+                if (mCurrentPage == 0) {
+                    mView.onDataRefresh(imageData.getNewsList());
+                } else {
+                    mView.onDataMore(imageData.getNewsList());
+                }
             }
         };
 
@@ -58,6 +60,13 @@ public class NewTopsPresenter extends BasePresenter implements NewTopsContract.P
         mSubscriptions.add(subscriber);
     }
 
+    @Override
+    public void getFirstNewTops() {
+        mCurrentPage = 0;
+        getMoreNewTops();
+    }
+
+    @Override
     public void getMoreNewTops() {
         getNewTops(mCurrentPage / 4 * 10 + index[mCurrentPage % 4]);
     }

@@ -15,12 +15,13 @@ import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
  * 16/10/2      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public abstract class BasePresenterFragment<T extends BasePresenter> extends BaseFragment {
-    protected BasePresenter mPresenter;
+public abstract class BasePresenterFragment<T extends BasePresenter> extends BaseViewPagerFragment {
+    protected T mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPresenter = createPresenter();
     }
 
     public abstract T createPresenter();

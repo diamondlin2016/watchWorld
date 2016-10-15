@@ -24,13 +24,18 @@ import rx.Subscriber;
 public interface NewTopsContract {
     interface View extends IBaseView {
         void onDataRefresh(ArrayList<NewsBean> list);
+
         void onDataMore(ArrayList<NewsBean> list);
 
+        void onLoadError();
     }
 
     //0开始一次+3 +2 +3 +2才会有数据
     interface Presenter extends IBasePresenter {
-        void getNewTops(int index);
+        void getFirstNewTops();
+
+        void getMoreNewTops();
+
     }
 
     interface Model extends IBaseModel {
