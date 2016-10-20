@@ -28,13 +28,11 @@ import butterknife.OnClick;
  * 16/9/29      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> implements Animation.AnimationListener,HomeImageContract.View {
+public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> implements HomeImageContract.View {
 
     @Bind(R.id.tv_welcome)
     TextView mTvWelcome;
     ScaleAnimation scaleAnimation;
-    private boolean mHasEnd = false;
-    private boolean mHasClick = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,8 +46,8 @@ public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> im
         scaleAnimation = new ScaleAnimation(1f, 3f, 1f, 3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(3000);
         scaleAnimation.setFillAfter(true);
+        scaleAnimation.setAnimationListener(mAnimationListener);
         mTvWelcome.setAnimation(scaleAnimation);
-        scaleAnimation.setAnimationListener(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -69,35 +67,32 @@ public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> im
         return new HomeImagePresenter(this);
     }
 
-    @OnClick(R.id.fl_root)
-    void enterHome() {
-        if (mHasEnd) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-        mHasClick = true;
-    }
-
-    @Override
-    public void onAnimationStart(Animation animation) {
-
-    }
-
-    @Override
-    public void onAnimationEnd(Animation animation) {
-        mHasEnd = true;
-        if (mHasClick){
-            enterHome();
-        }
-    }
-
-    @Override
-    public void onAnimationRepeat(Animation animation) {
-
-    }
-
     @Override
     public int getImageSize() {
         return 1;
     }
+
+    @OnClick(R.id.fl_root)
+    void enterHome() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            enterHome();
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    };
+
 }

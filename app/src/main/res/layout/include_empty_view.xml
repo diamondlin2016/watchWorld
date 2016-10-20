@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/layout_empty"
-             style="@style/MatchParent"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
              android:gravity="center"
              android:orientation="vertical"
-             android:padding="@dimen/large_margin">
+             android:padding="@dimen/view.margin.large">
 
     <TextView
         android:id="@+id/tv_list_empty"
-        style="@style/TextStyleNormal"
         android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:lineSpacingMultiplier="1.4"
-        android:text="没有更多数据" />
+        android:text="@string/text_no_more" />
 
 </FrameLayout>

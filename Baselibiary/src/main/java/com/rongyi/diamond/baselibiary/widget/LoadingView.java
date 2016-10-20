@@ -40,7 +40,7 @@ public class LoadingView extends Dialog implements View.OnClickListener {
     }
 
     private void onInit() {
-        View view = getLayoutInflater().inflate(R.layout.abc_view_loading, null);
+        View view = getLayoutInflater().inflate(R.layout.widget_loading, null);
 
         ProgressBar mProgressBar = (ProgressBar) view.findViewById(R.id.progress);
         DoubleBounce doubleBounce = new DoubleBounce();

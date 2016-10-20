@@ -44,7 +44,7 @@ public class NewTopsFragment extends BasePresenterFragment<NewTopsPresenter> imp
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.recycler_view;
+        return R.layout.widget_recycler_view;
     }
 
     @Override

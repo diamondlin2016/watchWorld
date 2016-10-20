@@ -45,8 +45,6 @@ public class NewTopsAdapter extends BaseAbstractAdapter<NewsBean> {
         TextView mItemTextId;
         @Bind(R.id.item_text_source_id)
         TextView mItemTextSourceId;
-        @Bind(R.id.zhihu_item_layout)
-        LinearLayout mZhihuItemLayout;
 
         NewTopsAdapter mAdapter;
 

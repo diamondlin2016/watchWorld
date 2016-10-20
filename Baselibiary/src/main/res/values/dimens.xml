@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toast_vertical_margin">80dp</dimen>
+
+    <dimen name="text.big.title">18sp</dimen>
+    <dimen name="text.title">16sp</dimen>
+    <dimen name="text.list.title">14sp</dimen>
+    <dimen name="text.list.detail">12sp</dimen>
+    <dimen name="text.list.small">10sp</dimen>
+    <dimen name="text.hint">12sp</dimen>
+
+    <dimen name="view.margin.small">4dp</dimen>
+    <dimen name="view.margin.normal">8dp</dimen>
+    <dimen name="view.margin.large">16dp</dimen>
+    <dimen name="view.margin.xlarge">24dp</dimen>
+
 </resources>

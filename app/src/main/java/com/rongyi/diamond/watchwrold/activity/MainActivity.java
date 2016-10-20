@@ -14,9 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +45,6 @@ import butterknife.Bind;
  * Why & What is modified:
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.nav_view)
@@ -81,16 +78,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         View headerView = mNavView.getHeaderView(0);
         TextView tvTitle = (TextView) headerView.findViewById(R.id.tv_title);
         ImageView ivNav = (ImageView) headerView.findViewById(R.id.iv_nav);
-        ImageDisplayHelper.displayLocalImage(AppContact.NAVIGATION_IMAGE_PATH, R.mipmap.bg, ivNav);
-        tvTitle.setText(mSharedPreferencesHelper.getString(AppSpContact.NAVIGATION_TITLE, getString(R.string.default_description)));
+        ImageDisplayHelper.displayLocalImage(AppContact.NAVIGATION_IMAGE_PATH, R.mipmap.default_nav_bg, ivNav);
+        tvTitle.setText(mSharedPreferencesHelper.getString(AppSpContact.NAVIGATION_TITLE, getString(R.string.text_default_description)));
         mNavView.setNavigationItemSelectedListener(this);
-        initMenu();
     }
 
-    private void initMenu() {
-        //add Item Click
-
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -99,9 +91,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_night:
                 boolean isNight = mSharedPreferencesHelper.getBoolean(AppSpContact.IS_NIGHT, false);
                 ToastHelper.showToastMessage(!isNight ? "开启了夜间模式" : "关闭了夜间模式");
-                isNight = !isNight;
-                Log.e("_______", "" + isNight);
-                mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, isNight);
+                mSharedPreferencesHelper.putBoolean(AppSpContact.IS_NIGHT, !isNight);
                 changeTheme();
                 break;
             case R.id.nav_setting:
@@ -113,9 +103,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             default:
                 switchFragment(id);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        assert drawer != null;
-        drawer.closeDrawer(GravityCompat.START);
+
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -129,27 +118,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 title = getString(R.string.title_new_tops);
         }
 
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setTitle(title);
+        mToolbar.setTitle(title);
         mSharedPreferencesHelper.putInt(AppSpContact.CHOOSE_ITEM_ID,id);
+    }
+
+
+
+    //---------------------------Switch Theme 相关------------------------
+    private void changeTheme() {
+        showAnimation();
+        toggleThemeSetting();
+        refreshUI();
     }
 
     //夜间模式相关
     private void initTheme() {
         if (SharedPreferencesHelper.getInstance().getBoolean(AppSpContact.IS_NIGHT, false)) {
-            Log.e("_______", "开启夜间模式");
             setTheme(R.style.NightTheme);
         } else {
-            Log.e("_______", "开启日间模式");
             setTheme(R.style.AppTheme);
         }
-    }
-
-    private void changeTheme() {
-        showAnimation();
-        toggleThemeSetting();
-        refreshUI();
     }
 
     private void refreshUI() {
@@ -159,7 +147,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         theme.resolveAttribute(R.attr.clockBackground, background, true);
         theme.resolveAttribute(R.attr.clockTextColor, textColor, true);
         mNavView.setBackgroundResource(background.resourceId);
-        Resources resources = getResources();
+//        Resources resources = getResources();
 //        mTvHello.setTextColor(resources.getColor(textColor.resourceId));
         refreshStatusBar();
     }

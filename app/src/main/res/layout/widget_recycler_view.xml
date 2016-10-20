@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recycle_view"
-    style="@style/MatchParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     app:recyclerClipToPadding="false"
     app:layout_empty="@layout/include_empty_view"
     app:scrollbarStyle="outsideOverlay"/>

@@ -5,35 +5,35 @@
         <item
             android:id="@+id/new_tops"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/title_new_tops"/>
+            android:title="@string/menu_night_model"/>
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:title="@string/menu_gallery"/>
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:title="@string/menu_slide_show"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="@string/menu_tools"/>
     </group>
 
-    <item android:title="Seetings">
+    <item android:title="@string/menu_setting">
         <menu>
             <item
                 android:id="@+id/nav_night"
                 android:icon="@drawable/ic_brightness_2_black_24px"
-                android:title="@string/night_night"/>
+                android:title="@string/menu_night_model"/>
             <item
                 android:id="@+id/nav_change"
                 android:icon="@drawable/ic_sort_black_24px"
-                android:title="@string/activity_change_channel_title"/>
+                android:title="@string/menu_change_title"/>
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_settings_black_24px"
-                android:title="@string/activity_setting_title"/>
+                android:title="@string/menu_setting_cn"/>
         </menu>
     </item>
 

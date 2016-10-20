@@ -105,7 +105,7 @@ public class HomeImagePresenter extends BasePresenter implements HomeImageContra
                                     if (muted == 0)
                                         muted = mutedDark;
                                     if (muted == 0)
-                                        muted = ContextCompat.getColor(BaseApplication.getContext(), R.color.colorAccent);
+                                        muted = ContextCompat.getColor(BaseApplication.getContext(), R.color.theme_colorAccent);
                                     DateFormat dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.DATE_FIELD);
                                     SharedPreferencesHelper sharedPreferencesHelper = SharedPreferencesHelper.getInstance();
                                     sharedPreferencesHelper.putString(AppSpContact.NAVIGATION_TITLE, imageData.getImages().get(0).getDescription());
@@ -136,7 +136,7 @@ public class HomeImagePresenter extends BasePresenter implements HomeImageContra
                 R.color.colorLimePrimary,
                 R.color.colorRedPrimary,
                 R.color.colorPinkPrimary,
-                R.color.colorPrimary
+                R.color.theme_colorPrimary
         };
         return ContextCompat.getColor(BaseApplication.getContext(), primaryInt[new Random().nextInt(14)]);
     }

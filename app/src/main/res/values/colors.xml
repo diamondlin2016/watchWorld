@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparent">#00000000</color>
-    <color name="mid_grey">#40808080</color>
+    <!--水波颜色-->
+    <color name="drawable.mid_grey">#40808080</color>
+
+    <color name="list.text.title">#323232</color>
+    <color name="list.text.title.selected">#969696</color>
+    <color name="list.text.small">#666666</color>
+    <color name="list.text.small.selected">#cccccc</color>
+
+    <color name="theme.colorPrimary">#3F51B5</color>
+    <color name="theme.colorPrimaryDark">#303F9F</color>
+    <color name="theme.colorAccent">#FF4081</color>
+    <color name="theme.textColorPrimary">#DDF9FF</color>
+    <color name="theme.textColorSecondary">#727272</color>
+
+    <!--night-->
+    <color name="theme.night.colorPrimary">#040404</color>
+    <color name="theme.night.colorPrimaryDark">#000000</color>
+    <color name="theme.night.colorAccent">#FF4081</color>
+    <color name="theme.night.colorPrimaryCenter">#062748</color>
+    <color name="theme.night.colorBackground">#3F3F3F</color>
+    <color name="theme.night.colorText">#8A9599</color>
+
 </resources>
