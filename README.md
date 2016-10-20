@@ -5,7 +5,7 @@
 
 其中 Base 类的抽取花费了很大的精力，有兴趣的朋友可以好好研究一下。
 
-目前一共三个 module，app 里面处理业务逻辑，Baselibrary 里面提取基类，Networklibrary 负责网络请求相关，所有的新建 Module 最好依赖一下 Baselibrary。
+目前一共三个 module，app 里面处理业务逻辑，Baselibrary 里面提取基类，Networklibrary 负责网络请求相关。架构可以直接拿过去开发新的 app，需要新建 Module 的话，最好依赖一下 Baselibrary。
 
 项目是业余时间做的，会不定期的更新，觉得我代码有价值的同学可以 Star 一下。
 
