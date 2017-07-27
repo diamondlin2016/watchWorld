@@ -5,12 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rongyi.diamond.baselibiary.adapter.BaseAbstractAdapter;
 import com.rongyi.diamond.baselibiary.adapter.BaseViewHolder;
-import com.rongyi.diamond.networklibrary.bean.NewsBean;
+import com.rongyi.diamond.networklibrary.bean.GankBean;
 import com.rongyi.diamond.watchwrold.R;
 import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
@@ -27,9 +26,9 @@ import butterknife.Bind;
  * 16/10/8      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public class NewTopsAdapter extends BaseAbstractAdapter<NewsBean> {
+public class GankDataAdapter extends BaseAbstractAdapter<GankBean> {
 
-    public NewTopsAdapter(Context context) {
+    public GankDataAdapter(Context context) {
         super(context);
     }
 
@@ -38,7 +37,7 @@ public class NewTopsAdapter extends BaseAbstractAdapter<NewsBean> {
         return new NewTopsHolder(mLayoutInflater.inflate(R.layout.item_new_tops, parent, false), this);
     }
 
-    public static class NewTopsHolder extends BaseViewHolder<NewsBean> {
+    public static class NewTopsHolder extends BaseViewHolder<GankBean> {
         @Bind(R.id.item_image_id)
         ImageView mItemImageId;
         @Bind(R.id.item_text_id)
@@ -46,18 +45,18 @@ public class NewTopsAdapter extends BaseAbstractAdapter<NewsBean> {
         @Bind(R.id.item_text_source_id)
         TextView mItemTextSourceId;
 
-        NewTopsAdapter mAdapter;
+        GankDataAdapter mAdapter;
 
-        public NewTopsHolder(View view, NewTopsAdapter adapter) {
+        public NewTopsHolder(View view, GankDataAdapter adapter) {
             super(view);
             mAdapter = adapter;
         }
 
         @Override
-        public void bindViewData(NewsBean data) {
-            mItemTextId.setText(data.getTitle());
-            mItemTextSourceId.setText(data.getSource());
-            ImageDisplayHelper.displayImage(data.getImgsrc(), R.drawable.ic_menu_slideshow, mItemImageId);
+        public void bindViewData(GankBean data) {
+            mItemTextId.setText(data.desc);
+            mItemTextSourceId.setText(data.publishedAt);
+            ImageDisplayHelper.displayImage(data.url, R.drawable.ic_menu_slideshow, mItemImageId);
         }
     }
 }

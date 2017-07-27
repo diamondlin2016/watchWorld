@@ -26,6 +26,12 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
     private LoadingView mLoginView;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getFragmentArguments();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutResource();
+    protected void getFragmentArguments(){
+
+    }
 
     public void showLoadingView() {
         mLoginView.show();

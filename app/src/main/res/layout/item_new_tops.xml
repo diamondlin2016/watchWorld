@@ -6,36 +6,40 @@
               android:layout_height="wrap_content"
               android:layout_marginLeft="@dimen/view.margin.normal"
               android:layout_marginRight="@dimen/view.margin.normal"
-              android:foreground="@drawable/mid_grey_ripple"
+              android:clickable="true"
               android:orientation="horizontal"
->
+              android:foreground="@drawable/mid_grey_ripple"
+    >
+
+    <!--android:background="?android:attr/selectableItemBackground"-->
+
 
     <ImageView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/item_image_id"
         android:layout_width="93dp"
         android:layout_height="74dp"
-        android:scaleType="centerCrop"
         android:layout_marginBottom="@dimen/view.margin.small"
         android:layout_marginTop="@dimen/view.margin.small"
         android:foreground="@drawable/mid_grey_ripple"
-    />
+        android:scaleType="centerCrop"
+        />
 
     <LinearLayout
-        android:paddingLeft="@dimen/view.margin.normal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingLeft="@dimen/view.margin.normal"
         >
 
         <TextView
-            android:layout_marginTop="@dimen/view.margin.normal"
             android:id="@+id/item_text_id"
             style="@style/Theme.TextAppearance.List.Title"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/view.margin.normal"
             android:layout_weight="1"
             android:singleLine="false"
-        />
+            />
 
         <TextView
             android:id="@+id/item_text_source_id"
@@ -43,7 +47,7 @@
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="@dimen/view.margin.small"
             tools:text="hello end"
-        />
+            />
     </LinearLayout>
 
 

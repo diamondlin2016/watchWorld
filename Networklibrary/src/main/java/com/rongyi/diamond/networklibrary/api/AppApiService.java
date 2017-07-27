@@ -1,7 +1,9 @@
 package com.rongyi.diamond.networklibrary.api;
 
+import com.rongyi.diamond.networklibrary.bean.GankBean;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
-import com.rongyi.diamond.networklibrary.bean.NewsList;
+
+import java.util.ArrayList;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -30,7 +32,14 @@ public interface AppApiService {
     Observable<HttpResultV1<ImageData>> getImage(@Query("page_size") int size);
 
 
-    //id为0开始一次+3 +2 +3 +2才会有数据  如0,3,5,8,10,13,15
-    @GET("http://c.m.163.com/nc/article/headline/T1348647909107/{id}-20.html")
-    Observable<NewsList> getNews(@Path("id") int id );
+    /*
+    * @path type :all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+    * @path pageSize :最大50
+    * @path pageNo :页码
+    * api_url:http://gank.io/api
+    * */
+    @GET("http://gank.io/api/search/query/listview/category/{type}/count/{pageSize}/page/{pageNo} ")
+    Observable<HttpResultGank<ArrayList<GankBean>>> getGankData(@Path("type") String type,
+                                                            @Path("pageSize") int pageSize,
+                                                            @Path("pageNo") int pageNo);
 }

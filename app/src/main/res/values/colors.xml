@@ -22,4 +22,8 @@
     <color name="theme.night.colorBackground">#3F3F3F</color>
     <color name="theme.night.colorText">#8A9599</color>
 
+    <color name="theme.background">#efeff4</color>
+
+    <color name="theme.primary.text">#333333</color>
+
 </resources>

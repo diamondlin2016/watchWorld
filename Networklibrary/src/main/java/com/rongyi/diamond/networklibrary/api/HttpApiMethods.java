@@ -2,8 +2,10 @@ package com.rongyi.diamond.networklibrary.api;
 
 import com.rongyi.diamond.baselibiary.app.BaseApplication;
 import com.rongyi.diamond.baselibiary.utils.NetworkInfoHelper;
+import com.rongyi.diamond.networklibrary.bean.GankBean;
 import com.rongyi.diamond.networklibrary.bean.ImageData;
-import com.rongyi.diamond.networklibrary.bean.NewsList;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -73,6 +75,7 @@ public class HttpApiMethods {
                     .subscribe(subscriber);
         }
     }
+
     public static <T> Observable.Transformer<T, T> applyIoSchedulers() {
         return (Observable.Transformer<T, T>) ioTransformer;
     }
@@ -94,7 +97,8 @@ public class HttpApiMethods {
 
     /**
      * 获取首页图片
-     *  RedirectResponseV1Transformer 适合接口统一的 api 使用
+     * RedirectResponseV1Transformer 适合接口统一的 api 使用
+     *
      * @param size 获取图片张数
      */
     public void getImage(Subscriber<ImageData> subscriber, int size) {
@@ -105,14 +109,13 @@ public class HttpApiMethods {
 
 
     /**
-     * 获取网易头条数据
-     *
-     * @param size 获取图片张数
+     * 获取gank数据
      */
-    public void getNews(Subscriber<NewsList> subscriber, int size) {
-        toSubscribe(appApiService.getNews(size), subscriber);
+    public void getGankData(Subscriber<ArrayList<GankBean>> subscriber, String type, int pageSize, int pageNo) {
+        toSubscribe(appApiService.getGankData(type, pageSize, pageNo).
+                        compose(new RedirectResponseV2Transformer<ArrayList<GankBean>>()),
+                subscriber);
     }
-
 
 
 }

@@ -27,6 +27,8 @@ dependencies {
     //加强版RecyclerView 代码地址-----> https://github.com/Malinskiy/SuperRecyclerView
     compile 'com.malinskiy:superrecyclerview:1.1.4'
 
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+
     compile project(':Baselibiary')
     compile project(':Networklibrary')
 

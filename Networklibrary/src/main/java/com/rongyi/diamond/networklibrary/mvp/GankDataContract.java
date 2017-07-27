@@ -1,14 +1,10 @@
 package com.rongyi.diamond.networklibrary.mvp;
 
-import com.rongyi.diamond.baselibiary.base.mvp.IBaseModel;
 import com.rongyi.diamond.baselibiary.base.mvp.IBasePresenter;
 import com.rongyi.diamond.baselibiary.base.mvp.IBaseView;
-import com.rongyi.diamond.networklibrary.bean.NewsBean;
-import com.rongyi.diamond.networklibrary.bean.NewsList;
+import com.rongyi.diamond.networklibrary.bean.GankBean;
 
 import java.util.ArrayList;
-
-import rx.Subscriber;
 
 /**
  * Author:    Diamond_Lin
@@ -21,25 +17,21 @@ import rx.Subscriber;
  * 16/10/8      Diamond_Lin            1.0                    1.0
  * Why & What is modified:
  */
-public interface NewTopsContract {
+public interface GankDataContract {
     interface View extends IBaseView {
-        void onDataRefresh(ArrayList<NewsBean> list);
+        void onDataRefresh(ArrayList<GankBean> list);
 
-        void onDataMore(ArrayList<NewsBean> list);
+        void onDataMore(ArrayList<GankBean> list);
 
         void onLoadError();
+
+        String getRequestType();
     }
 
-    //0开始一次+3 +2 +3 +2才会有数据
     interface Presenter extends IBasePresenter {
-        void getFirstNewTops();
+        void getGankData();
 
-        void getMoreNewTops();
-
-    }
-
-    interface Model extends IBaseModel {
-        void getNews(Subscriber<NewsList> subscriber, int index);
+        void getMore();
 
     }
 

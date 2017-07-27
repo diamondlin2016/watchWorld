@@ -13,5 +13,6 @@ package com.rongyi.diamond.networklibrary.api;
  */
 public class AppApiContact {
     public static final int DEFAULT_CURRENT_PAGE = 1;//默认请求第一页
+    public static final int PAGE_SIZE = 20;
     public static final int STATUS_NET_SUCCESS = 1;//网络请求成功状态
 }

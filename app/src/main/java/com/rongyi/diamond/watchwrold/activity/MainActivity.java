@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +20,7 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,9 +28,11 @@ import com.rongyi.diamond.baselibiary.app.AppSpContact;
 import com.rongyi.diamond.baselibiary.base.BaseActivity;
 import com.rongyi.diamond.baselibiary.utils.SharedPreferencesHelper;
 import com.rongyi.diamond.baselibiary.utils.ToastHelper;
+import com.rongyi.diamond.baselibiary.utils.Utils;
 import com.rongyi.diamond.watchwrold.R;
 import com.rongyi.diamond.watchwrold.app.AppContact;
-import com.rongyi.diamond.watchwrold.fragment.NewTopsFragment;
+import com.rongyi.diamond.watchwrold.fragment.GankAllTypeFragment;
+import com.rongyi.diamond.watchwrold.presenter.GankDataPresenter;
 import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
 import butterknife.Bind;
@@ -61,10 +65,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
+        setStateBarAndToolbar();
         setSupportActionBar(mToolbar);
         setNavigationView();
         setDefaultItem();
     }
+
+
 
     private void setDefaultItem() {
         int i = mSharedPreferencesHelper.getInt(AppSpContact.CHOOSE_ITEM_ID);
@@ -95,6 +102,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 changeTheme();
                 break;
             case R.id.nav_setting:
+                startActivity(new Intent(this,MpChartActivity.class));
                 ToastHelper.showToastMessage("点击了设置按钮");
                 break;
             case R.id.nav_change:
@@ -113,7 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.new_tops:
             default:
-                NewTopsFragment newTopsFragment = new NewTopsFragment();
+                GankAllTypeFragment newTopsFragment = GankAllTypeFragment.newInstance(GankDataPresenter.TYPE_MEIZI);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, newTopsFragment).commit();
                 title = getString(R.string.title_new_tops);
         }
@@ -212,6 +220,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             setTheme(R.style.NightTheme);
         } else {
             setTheme(R.style.AppTheme);
+        }
+    }
+
+    //设置状态栏和 toolbar 颜色
+    private void setStateBarAndToolbar() {
+        int color = mSharedPreferencesHelper.getInt(AppSpContact.VIBRANT);
+        mToolbar.setBackgroundColor(color);
+        if (android.os.Build.VERSION.SDK_INT >= 22) {
+            Window window = getWindow();
+            int darkColor = Utils.colorBurn(color);
+            window.setStatusBarColor(darkColor);
+            window.setNavigationBarColor(darkColor);
         }
     }
 

@@ -11,6 +11,24 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="Theme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <!--<item name="colorAccent">@color/colorPrimary</item>-->
+        <!-- Used for the title and text -->
+        <!--<item name="android:textColorPrimary">@color/theme.primary.text</item>-->
+        <!-- Used for the background -->
+        <item name="android:background">@color/white</item>
+    </style>
 
+    <style name="Theme.AlertDialog.Transparent" >
+        <!-- Used for the buttons -->
+        <!--<item name="colorAccent">@color/theme.colorPrimary</item>-->
+        <!-- Used for the title and text -->
+        <!--<item name="android:textColorPrimary">@color/theme.third.text</item>-->
+        <!-- Used for the background -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 
 </resources>
