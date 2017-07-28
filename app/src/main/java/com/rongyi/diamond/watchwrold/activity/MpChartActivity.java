@@ -21,11 +21,10 @@ import com.rongyi.diamond.watchwrold.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.github.mikephil.charting.data.LineDataSet.Mode.CUBIC_BEZIER;
-import static com.rongyi.diamond.watchwrold.R.id.chart;
 
 /**
  * Author:    Diamond_Lin
@@ -41,7 +40,7 @@ import static com.rongyi.diamond.watchwrold.R.id.chart;
 
 public class MpChartActivity extends AppCompatActivity {
 
-    @Bind(chart)
+    @BindView(R.id.chart)
     LineChart mChart;
 
     @Override

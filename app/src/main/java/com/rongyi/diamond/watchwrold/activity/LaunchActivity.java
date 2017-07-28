@@ -14,7 +14,7 @@ import com.rongyi.diamond.networklibrary.mvp.HomeImageContract;
 import com.rongyi.diamond.watchwrold.R;
 import com.rongyi.diamond.watchwrold.presenter.HomeImagePresenter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  */
 public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> implements HomeImageContract.View {
 
-    @Bind(R.id.tv_welcome)
+    @BindView(R.id.tv_welcome)
     TextView mTvWelcome;
     ScaleAnimation scaleAnimation;
 

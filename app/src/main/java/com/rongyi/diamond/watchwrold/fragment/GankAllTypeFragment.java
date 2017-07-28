@@ -1,25 +1,23 @@
 package com.rongyi.diamond.watchwrold.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.StringDef;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.malinskiy.superrecyclerview.OnMoreListener;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.rongyi.diamond.baselibiary.base.BasePresenterFragment;
-import com.rongyi.diamond.baselibiary.widget.RecyclerViewItemDivider;
 import com.rongyi.diamond.networklibrary.bean.GankBean;
 import com.rongyi.diamond.networklibrary.mvp.GankDataContract;
 import com.rongyi.diamond.watchwrold.R;
-import com.rongyi.diamond.watchwrold.adapter.GankDataAdapter;
+import com.rongyi.diamond.watchwrold.adapter.BaseGankAdapter;
 import com.rongyi.diamond.watchwrold.app.AppParamContact;
+import com.rongyi.diamond.watchwrold.factory.GankAdapterFactory;
 import com.rongyi.diamond.watchwrold.presenter.GankDataPresenter;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Author:    Diamond_Lin
@@ -34,12 +32,26 @@ import butterknife.Bind;
  */
 public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter> implements GankDataContract.View {
 
-    @Bind(R.id.recycle_view)
+    @BindView(R.id.recycle_view)
     SuperRecyclerView mRecycleView;
-    GankDataAdapter mNewTopsAdapter;
+    BaseGankAdapter mGankDataAdapter;
     private String mType;
 
-    public static GankAllTypeFragment newInstance(@GankDataPresenter.GankDataType String type) {
+    //all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+    public static final String TYPE_ALL = "all";//all
+    public static final String TYPE_ANDROID = "Android";//
+    public static final String TYPE_VIDEO = "休息视频";//
+    public static final String TYPE_MEIZI = "福利";//
+    public static final String TYPE_EXTEND = "拓展资源";//
+    public static final String TYPE_H5 = "前端";//
+    public static final String TYPE_RECOMMEND = "瞎推荐";//
+    public static final String TYPE_APP = "App";//
+
+    @StringDef({TYPE_ALL, TYPE_ANDROID, TYPE_VIDEO, TYPE_MEIZI, TYPE_EXTEND, TYPE_H5, TYPE_RECOMMEND, TYPE_APP})
+    public @interface GankDataType {
+    }
+
+    public static GankAllTypeFragment newInstance(@GankAllTypeFragment.GankDataType String type) {
         Bundle bd = new Bundle();
         bd.putString(AppParamContact.PARAM_KEY_TYPE, type);
         GankAllTypeFragment fragment = new GankAllTypeFragment();
@@ -56,6 +68,7 @@ public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter
 
     @Override
     public void onLazyLoad() {
+        mPresenter.getGankData();
     }
 
     @Override
@@ -65,7 +78,7 @@ public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter
 
     @Override
     protected void getFragmentArguments() {
-        mType = getArguments().getString(AppParamContact.PARAM_KEY_TYPE, GankDataPresenter.TYPE_ALL);
+        mType = getArguments().getString(AppParamContact.PARAM_KEY_TYPE, GankAllTypeFragment.TYPE_ALL);
     }
 
     @Override
@@ -85,42 +98,21 @@ public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter
                 mPresenter.getMore();
             }
         }, 1);
-
-        mRecycleView.addItemDecoration(new RecyclerViewItemDivider(getActivity(), RecyclerViewItemDivider.VERTICAL_LIST));
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                return 0;
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
-            }
-        });
-        itemTouchHelper.attachToRecyclerView(mRecycleView.getRecyclerView());
-        mPresenter.getGankData();
     }
 
     @Override
     public void onDataRefresh(ArrayList<GankBean> list) {
-        if (mNewTopsAdapter == null) {
-            mNewTopsAdapter = new GankDataAdapter(getActivity());
-            mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            mRecycleView.setAdapter(mNewTopsAdapter);
+        if (mGankDataAdapter == null) {
+            mGankDataAdapter = GankAdapterFactory.createAdapter(mType,getContext());
+            mRecycleView.setAdapter(mGankDataAdapter);
         }
-        mNewTopsAdapter.clearItems();
-        mNewTopsAdapter.addItems(list);
+        mGankDataAdapter.clearItems();
+        mGankDataAdapter.addItems(list);
     }
 
     @Override
     public void onDataMore(ArrayList<GankBean> list) {
-        mNewTopsAdapter.addItems(list);
+        mGankDataAdapter.addItems(list);
     }
 
     @Override
@@ -135,5 +127,6 @@ public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter
     public String getRequestType() {
         return mType;
     }
+
 
 }

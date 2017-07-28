@@ -1,7 +1,5 @@
 package com.rongyi.diamond.watchwrold.presenter;
 
-import android.support.annotation.StringDef;
-
 import com.rongyi.diamond.baselibiary.base.mvp.BasePresenter;
 import com.rongyi.diamond.networklibrary.app.NetworkApplication;
 import com.rongyi.diamond.networklibrary.bean.GankBean;
@@ -28,19 +26,6 @@ public class GankDataPresenter extends BasePresenter implements GankDataContract
 
     private final GankDataContract.View mView;
     private GankDataModel mGankDataModel;
-    //all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
-    public static final String TYPE_ALL = "all";//all
-    public static final String TYPE_ANDROID = "android";//
-    public static final String TYPE_VIDEO = "休息视频";//
-    public static final String TYPE_MEIZI = "福利";//
-    public static final String TYPE_EXTOR = "拓展资源";//
-    public static final String TYPE_H5 = "前端";//
-    public static final String TYPE_RECOMMEND = "瞎推荐";//
-    public static final String TYPE_APP = "App";//
-
-    @StringDef({TYPE_ALL, TYPE_ANDROID, TYPE_VIDEO, TYPE_MEIZI, TYPE_EXTOR, TYPE_H5, TYPE_RECOMMEND, TYPE_APP})
-    public @interface GankDataType {
-    }
 
 
     public GankDataPresenter(GankDataContract.View view) {

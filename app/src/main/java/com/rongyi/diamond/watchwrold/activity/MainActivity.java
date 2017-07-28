@@ -32,10 +32,9 @@ import com.rongyi.diamond.baselibiary.utils.Utils;
 import com.rongyi.diamond.watchwrold.R;
 import com.rongyi.diamond.watchwrold.app.AppContact;
 import com.rongyi.diamond.watchwrold.fragment.GankAllTypeFragment;
-import com.rongyi.diamond.watchwrold.presenter.GankDataPresenter;
 import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Author:    Diamond_Lin
@@ -49,11 +48,11 @@ import butterknife.Bind;
  * Why & What is modified:
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView mNavView;
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
     @Override
@@ -121,7 +120,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.new_tops:
             default:
-                GankAllTypeFragment newTopsFragment = GankAllTypeFragment.newInstance(GankDataPresenter.TYPE_MEIZI);
+                GankAllTypeFragment newTopsFragment = GankAllTypeFragment.newInstance(GankAllTypeFragment.TYPE_MEIZI);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, newTopsFragment).commit();
                 title = getString(R.string.title_new_tops);
         }
