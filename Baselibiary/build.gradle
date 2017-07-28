@@ -1,10 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         minSdkVersion 15
@@ -25,9 +23,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:palette-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+
     //注解
-    compile 'com.jakewharton:butterknife:8.7.0'
-    apt 'com.jakewharton:butterknife-compiler:8.7.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
     //https://github.com/ybq/Android-SpinKit  progressBar
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
     //Logger输出显示 代码地址-----> https://github.com/orhanobut/logger
