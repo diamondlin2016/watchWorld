@@ -481,22 +481,6 @@ public class Utils {
         inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
-    /**
-     * 获取容易逛验证码
-     *
-     * @param content 短信内容
-     * @return 验证码
-     */
-    public static String getRongYiCode(String content) {
-        String code = null;
-        if (StringHelper.notEmpty(content)) {
-            int index = content.lastIndexOf("容易逛");
-            if (index != -1) {//是容易网短信
-                code = getNumbers(content);
-            }
-        }
-        return code;
-    }
 
     //截取数字
     public static String getNumbers(String content) {

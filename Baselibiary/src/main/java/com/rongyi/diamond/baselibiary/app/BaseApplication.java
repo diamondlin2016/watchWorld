@@ -38,7 +38,7 @@ public class BaseApplication extends Application {
     }
 
     protected void setUpLog() {
-        Logger.init("容易逛")                 // default PRETTYLOGGER or use just init()
+        Logger.init("diamond_lin")                 // default PRETTYLOGGER or use just init()
                 .methodCount(3)                 // default 2
                 .hideThreadInfo()               // default shown
                 .logLevel(LogLevel.FULL)        // default LogLevel.FULL

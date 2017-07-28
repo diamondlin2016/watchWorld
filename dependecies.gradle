@@ -1,0 +1,54 @@
+ext {
+    //Version
+    supportLibrary = '24.2.1'
+
+    //Support Libraries dependencies
+    testDependencies = [
+            junit: "junit:junit:4.12",
+    ]
+
+    //Support Libraries dependencies
+    supportDependencies = [
+            v4               : "com.android.support:support-v4:${supportLibrary}",
+            design           : "com.android.support:design:${supportLibrary}",
+            recyclerView     : "com.android.support:recyclerview-v7:${supportLibrary}",
+            cardView         : "com.android.support:cardview-v7:${supportLibrary}",
+            appCompat        : "com.android.support:appcompat-v7:${supportLibrary}",
+            supportAnnotation: "com.android.support:support-annotations:${supportLibrary}",
+            palette          : "com.android.support:palette-v7:${supportLibrary}",
+            gridlayout       : "com.android.support:gridlayout-v7:${supportLibrary}",
+    ]
+
+    //Third Libraries dependencies
+    thirdDependencies = [
+            multidex                 : "com.android.support:multidex:1.0.1",
+            //View注解   代码地址-----> https://github.com/JakeWharton/butterknife
+            butterKnife              : "com.jakewharton:butterknife:8.4.0",
+            butterKnifeApt           : "com.jakewharton:butterknife-compiler:8.4.0",
+            //https://github.com/ybq/Android-SpinKit  progressBar
+            progressBar              : "com.github.ybq:Android-SpinKit:1.1.0",
+            //Logger输出显示 代码地址-----> https://github.com/orhanobut/logger
+            logger                   : "com.github.orhanobut:logger:1.12",
+            //EventBus 代码地址-----> https://github.com/greenrobot/EventBus
+            eventBus                 : "org.greenrobot:eventbus:3.0.0",
+            //API网络请求注解库    代码地址-----> https://github.com/square/retrofit
+            retrofit                 : "com.squareup.retrofit2:retrofit:2.0.1",
+            converterGson            : "com.squareup.retrofit2:converter-gson:2.0.1",
+            adapterRxjava            : "com.squareup.retrofit2:adapter-rxjava:2.0.1",
+            //异步处理库    代码地址-----> https://github.com/ReactiveX/RxAndroid
+            rxjava                   : "io.reactivex:rxjava:1.1.5",
+            rxandroid                : "io.reactivex:rxandroid:1.2.0",
+            //网络请求库 代码地址-----> https://github.com/square/okhttp
+            okhttp                   : "com.squareup.okhttp3:okhttp:3.2.0",
+            //图片加载库 代码地址-----> https://github.com/square/picasso
+            picasso                  : "com.squareup.picasso:picasso:2.5.2",
+            //加强版RecyclerView 代码地址-----> https://github.com/Malinskiy/SuperRecyclerView
+            superrecyclerview        : "com.malinskiy:superrecyclerview:1.1.4",
+            //PhotoView https://github.com/chrisbanes/PhotoView
+            photoView                : "com.github.chrisbanes:PhotoView:1.2.6",
+            //图表库   https://github.com/PhilJay/MPAndroidChart
+            MpChart                  : "com.github.PhilJay:MPAndroidChart:v3.0.1",
+            //RoundedImageView 代码地址-----> https://github.com/vinc3m1/RoundedImageView
+            roundedImageView         : "com.makeramen:roundedimageview:2.2.1",
+    ]
+}

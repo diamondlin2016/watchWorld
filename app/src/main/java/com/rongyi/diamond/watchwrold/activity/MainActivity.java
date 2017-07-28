@@ -31,7 +31,7 @@ import com.rongyi.diamond.baselibiary.utils.ToastHelper;
 import com.rongyi.diamond.baselibiary.utils.Utils;
 import com.rongyi.diamond.watchwrold.R;
 import com.rongyi.diamond.watchwrold.app.AppContact;
-import com.rongyi.diamond.watchwrold.fragment.GankAllTypeFragment;
+import com.rongyi.diamond.watchwrold.fragment.GankFragment;
 import com.rongyi.diamond.watchwrold.utils.ImageDisplayHelper;
 
 import butterknife.BindView;
@@ -120,9 +120,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.new_tops:
             default:
-                GankAllTypeFragment newTopsFragment = GankAllTypeFragment.newInstance(GankAllTypeFragment.TYPE_MEIZI);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, newTopsFragment).commit();
-                title = getString(R.string.title_new_tops);
+                GankFragment gankFragment = new GankFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_replace, gankFragment).commit();
+                title = getString(R.string.title_gank);
         }
 
         mToolbar.setTitle(title);
