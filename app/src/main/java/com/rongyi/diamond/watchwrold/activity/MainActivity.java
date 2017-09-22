@@ -71,10 +71,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
 
-
     private void setDefaultItem() {
         int i = mSharedPreferencesHelper.getInt(AppSpContact.CHOOSE_ITEM_ID);
-        if (i!=0){
+        if (i != 0) {
             mNavView.setCheckedItem(i);
             switchFragment(i);
         }
@@ -101,7 +100,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 changeTheme();
                 break;
             case R.id.nav_setting:
-                startActivity(new Intent(this,MpChartActivity.class));
+                startActivity(new Intent(this, MpChartActivity.class));
                 ToastHelper.showToastMessage("点击了设置按钮");
                 break;
             case R.id.nav_change:
@@ -126,9 +125,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
 
         mToolbar.setTitle(title);
-        mSharedPreferencesHelper.putInt(AppSpContact.CHOOSE_ITEM_ID,id);
+        mSharedPreferencesHelper.putInt(AppSpContact.CHOOSE_ITEM_ID, id);
     }
-
 
 
     //---------------------------Switch Theme 相关------------------------

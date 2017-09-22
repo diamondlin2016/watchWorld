@@ -23,6 +23,7 @@ public abstract class BasePresenterActivity<T extends IBasePresenter> extends Ba
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = createPresenter();
+        setViewComponent();
     }
 
     public abstract T createPresenter();

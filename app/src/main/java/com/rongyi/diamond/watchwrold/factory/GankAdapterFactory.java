@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.rongyi.diamond.watchwrold.adapter.BaseGankAdapter;
 import com.rongyi.diamond.watchwrold.adapter.GankDataAdapter;
+import com.rongyi.diamond.watchwrold.adapter.GankMeiziAdapter;
 import com.rongyi.diamond.watchwrold.fragment.GankAllTypeFragment;
 
 /**
@@ -22,10 +23,13 @@ public class GankAdapterFactory {
 
     public static BaseGankAdapter createAdapter(@GankAllTypeFragment.GankDataType String type, Context ctx) {
         BaseGankAdapter adapter;
-        switch (type){
+        switch (type) {
             case GankAllTypeFragment.TYPE_ALL:
             case GankAllTypeFragment.TYPE_ANDROID:
             case GankAllTypeFragment.TYPE_VIDEO:
+            case GankAllTypeFragment.TYPE_MEIZI:
+                adapter = new GankMeiziAdapter(ctx);
+                break;
             case GankAllTypeFragment.TYPE_EXTEND:
             case GankAllTypeFragment.TYPE_H5:
             case GankAllTypeFragment.TYPE_RECOMMEND:

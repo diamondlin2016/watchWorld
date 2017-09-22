@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@mipmap/default_nav_bg"
-    />
+        />
 
     <TextView
         android:id="@+id/tv_title"
@@ -19,6 +19,6 @@
         android:layout_gravity="bottom"
         android:padding="@dimen/view.margin.large"
         android:text="@string/text_default_description"
-    />
+        />
 
 </FrameLayout>

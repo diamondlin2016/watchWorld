@@ -24,7 +24,7 @@ public class MyApplication extends NetworkApplication {
     }
 
     public static MyApplication getContext() {
-        return (MyApplication)mContext;
+        return (MyApplication) mContext;
     }
 
 }

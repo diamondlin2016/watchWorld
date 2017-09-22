@@ -42,5 +42,6 @@ dependencies {
     compile thirdDependencies.multidex
     compile thirdDependencies.superrecyclerview
     compile thirdDependencies.MpChart
+    compile thirdDependencies.photoView
 
 }

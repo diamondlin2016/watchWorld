@@ -7,8 +7,8 @@
               android:layout_marginLeft="@dimen/view.margin.normal"
               android:layout_marginRight="@dimen/view.margin.normal"
               android:clickable="true"
-              android:orientation="horizontal"
               android:foreground="@drawable/mid_grey_ripple"
+              android:orientation="horizontal"
     >
 
     <!--android:background="?android:attr/selectableItemBackground"-->

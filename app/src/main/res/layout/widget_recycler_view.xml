@@ -5,6 +5,6 @@
     android:id="@+id/recycle_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:recyclerClipToPadding="false"
     app:layout_empty="@layout/include_empty_view"
+    app:recyclerClipToPadding="false"
     app:scrollbarStyle="outsideOverlay"/>

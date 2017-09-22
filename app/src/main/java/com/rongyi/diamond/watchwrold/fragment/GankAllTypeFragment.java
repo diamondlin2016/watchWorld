@@ -103,7 +103,7 @@ public class GankAllTypeFragment extends BasePresenterFragment<GankDataPresenter
     @Override
     public void onDataRefresh(ArrayList<GankBean> list) {
         if (mGankDataAdapter == null) {
-            mGankDataAdapter = GankAdapterFactory.createAdapter(mType,getContext());
+            mGankDataAdapter = GankAdapterFactory.createAdapter(mType, getContext());
             mRecycleView.setAdapter(mGankDataAdapter);
         }
         mGankDataAdapter.clearItems();

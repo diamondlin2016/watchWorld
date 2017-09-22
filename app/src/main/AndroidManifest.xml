@@ -37,6 +37,12 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity
+            android:theme="@style/AppTheme.ToolBar"
+            android:name=".activity.PhotoActivity"
+            >
+        </activity>
+
     </application>
 
 </manifest>

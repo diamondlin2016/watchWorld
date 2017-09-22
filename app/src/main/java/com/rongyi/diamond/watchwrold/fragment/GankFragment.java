@@ -62,7 +62,8 @@ public class GankFragment extends BaseViewPagerFragment {
     }
 
     @Override
-    protected void onLazyLoad() {}
+    protected void onLazyLoad() {
+    }
 
 
 }

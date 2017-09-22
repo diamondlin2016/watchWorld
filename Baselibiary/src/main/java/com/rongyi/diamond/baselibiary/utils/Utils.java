@@ -15,9 +15,11 @@ import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -547,6 +549,38 @@ public class Utils {
         blue = (int) Math.floor(blue * (1 - 0.2));
 //        return Color.argb(alpha,red, green, blue);
         return Color.rgb(red,green,blue);
+    }
+
+    /*
+    * 检查是否有**权限
+    * @params permission 比如 Manifest.permission.WRITE_EXTERNAL_STORAGE
+    * */
+    public boolean checkPermission(Activity activity,int resultCode,String permission){
+        if (ContextCompat.checkSelfPermission(activity,permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            //申请WRITE_EXTERNAL_STORAGE权限
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},resultCode);
+            return false;
+        } else {
+            return true;
+        }
+    }
+    /**
+     * Get the directionary of SD card
+     * @return
+     */
+    public static String getSDCardPath() {
+        File sdcardDir;
+        // check whether SD card exist
+        boolean sdcardExist = Environment.getExternalStorageState()
+                .equals(Environment.MEDIA_MOUNTED);
+        if (sdcardExist) {
+            sdcardDir = Environment.getExternalStorageDirectory();
+        } else {
+            sdcardDir = Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        }
+        return sdcardDir.toString();
     }
 
 }

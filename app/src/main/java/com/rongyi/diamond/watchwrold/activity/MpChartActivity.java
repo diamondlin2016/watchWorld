@@ -92,15 +92,23 @@ public class MpChartActivity extends AppCompatActivity {
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                switch ((int) value){
-                    case 1:return "3.1";
-                    case 2:return "3.2";
-                    case 3:return "3.3";
-                    case 4:return "3.4";
-                    case 5:return "3.5";
-                    case 6:return "3.6";
-                    case 7:return "3.7";
-                    case 8:return "3.8";
+                switch ((int) value) {
+                    case 1:
+                        return "3.1";
+                    case 2:
+                        return "3.2";
+                    case 3:
+                        return "3.3";
+                    case 4:
+                        return "3.4";
+                    case 5:
+                        return "3.5";
+                    case 6:
+                        return "3.6";
+                    case 7:
+                        return "3.7";
+                    case 8:
+                        return "3.8";
                 }
 
                 return "";
@@ -124,11 +132,11 @@ public class MpChartActivity extends AppCompatActivity {
 
         if (mChart.getData() != null &&
                 mChart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet)mChart.getData().getDataSetByIndex(0);
+            set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
             set1.setValues(values);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
-        }else {
+        } else {
             set1 = new LineDataSet(values, " ");
             set1.setColor(getResources().getColor(R.color.theme_textColorPrimary));
             set1.setCircleColor(getResources().getColor(R.color.theme_textColorPrimary));//描点颜色
@@ -141,13 +149,11 @@ public class MpChartActivity extends AppCompatActivity {
             set1.setMode(CUBIC_BEZIER);
 
 
-
             if (Utils.getSDKInt() >= 18) {
                 // fill drawable only supported on api level 18 and above
                 Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_white);
                 set1.setFillDrawable(drawable);
-            }
-            else {
+            } else {
                 set1.setFillColor(Color.BLACK);
             }
 

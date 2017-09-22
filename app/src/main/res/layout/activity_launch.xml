@@ -11,6 +11,6 @@
         android:layout_gravity="center"
         android:text="@string/text_welcome"
         android:textSize="@dimen/text.big.title"
-    />
+        />
 
 </FrameLayout>

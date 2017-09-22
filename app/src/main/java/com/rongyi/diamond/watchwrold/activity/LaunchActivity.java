@@ -1,9 +1,7 @@
 package com.rongyi.diamond.watchwrold.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -34,15 +32,11 @@ public class LaunchActivity extends BasePresenterActivity<HomeImagePresenter> im
     TextView mTvWelcome;
     ScaleAnimation scaleAnimation;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setViewComponent();
-    }
 
+    @Override
     protected void setViewComponent() {
-        mPresenter.getImage(1);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mPresenter.getImage(1);
         scaleAnimation = new ScaleAnimation(1f, 3f, 1f, 3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(3000);
         scaleAnimation.setFillAfter(true);

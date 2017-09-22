@@ -1,5 +1,6 @@
 package com.rongyi.diamond.baselibiary.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent() != null) {
+            getArgumentsForActivityIntent(getIntent());
+        }
         setContentView(getLayoutResource());
         ButterKnife.bind(this);
         mSharedPreferencesHelper = SharedPreferencesHelper.getInstance();
@@ -45,13 +49,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         mLoadingView.hide();
     }
 
-    protected void setViewComponent(){
+    protected void setViewComponent() {
+
+    }
+
+    /**
+     * 获取 Activity Intent 传递的参数
+     *
+     * @param intent Activity Intent
+     */
+    protected void getArgumentsForActivityIntent(Intent intent) {
 
     }
 
     @Override
     public void onBackPressed() {
-        if (mLoadingView.isShowing()) {
+        if (mLoadingView != null && mLoadingView.isShowing()) {
             mLoadingView.dismiss();
         } else {
             super.onBackPressed();
